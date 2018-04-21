@@ -5,14 +5,15 @@
     <title>Build Order</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="javascipt/angular.min.js"></script>
     <script src="javascipt/controller.js"></script>
     <script src="javascipt/format-price.js"></script>
+    <script src="javascipt/html2canvas.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="controller">
-<div class="col-lg-6" style="clear: both">
+<div class="col-lg-6" style="clear: both; margin-top: 30px">
     <form name="myForm">
         <div class="form-group col-lg-12">
             <label>Trường</label>
@@ -66,23 +67,23 @@
         </div>
 
         <div class="col-lg-12">
-            <button ng-disabled="!formDisabled()" type="button" ng-click="printToCart('print')" class="btn btn-default">Print</button>
+            <button type="button" ng-click="printToCart('print')" class="btn btn-default">Print</button>
+            <!--<button ng-disabled="!formDisabled()" type="button" ng-click="printToCart('print')" class="btn btn-default">Print</button>-->
         </div>
     </form>
 </div>
 
-<!--<div id="print" style="clear: both; width: 1654px; height: 2339px">-->
-<div id="print" style="clear: both; width: 1654px; height: 2339px; display: none">
-    <div style="color:#333; font-size: 40px; padding: 15px;width: 1654px;height: 1165px; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center;">
-        <p style="font-size: 26px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
-        <p style="margin-top: -10px; font-size: 20px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
-        <p style="text-align: center; font-size: 70px; font-weight: bold; margin-top: 50px">BIÊN LAI THU TIỀN</p>
-        <p style="text-align: center">Số:______/TSMB</p>
+<div id="print" style="clear: both; width: 21cm; height: 29.7cm; display: none">
+    <div style="color:#333; font-size: 18px; width: 21cm; height: 14.5cm; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center; background-size: 498px 386px;">
+        <p style="font-size: 14px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
+        <p style="margin-top: -10px; font-size: 12px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
+        <p style="text-align: center; font-size: 26px; font-weight: bold; margin-top: 8px">BIÊN LAI THU TIỀN</p>
+        <p style="text-align: center; margin-top: -20px">Số:______/TSMB</p>
 
-        <div style="padding: 30px; font-style: italic">
+        <div style="padding: 10px; font-style: italic">
             <div style="clear: both">
-                <p style="float: left">Người nộp: {{ profile.name }}</p>
-                <p style="float: right; margin-right: 500px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
+                <p style="float: left">Họ và Tên: {{ profile.name }}</p>
+                <p style="float: right; margin-right: 150px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
             </div>
 
 
@@ -94,24 +95,23 @@
             </div>
         </div>
 
-        <p style="float: right; margin-right: 100px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
+        <p style="float: right; margin-right: 100px; margin-top: -10px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
 
-        <div style="clear: both">
-            <p style="float: left; margin-left: 100px">Người Nộp</p>
-            <p style="float: right; margin-right: 250px">Người Thu</p>
+        <div style="clear: both;">
+            <p style="float: left; margin-left: 100px; margin-top: -10px">Bên Nộp</p>
+            <p style="float: right; margin-right: 250px; margin-top: -10px">Bên Thu</p>
         </div>
     </div>
-    <p style="color:#333; border: solid 1px"></p>
-    <div style="color:#333; font-size: 40px; padding: 15px;width: 1654px;height: 1165px; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center;">
-        <p style="font-size: 26px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
-        <p style="margin-top: -10px; font-size: 20px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
-        <p style="text-align: center; font-size: 70px; font-weight: bold; margin-top: 50px">BIÊN LAI THU TIỀN</p>
-        <p style="text-align: center">Số:______/TSMB</p>
+    <div style="border-top:1px dotted #333;  color:#333; font-size: 18px; width: 21cm; height: 14.5cm; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center; background-size: 498px 386px;">
+        <p style="font-size: 14px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
+        <p style="margin-top: -10px; font-size: 12px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
+        <p style="text-align: center; font-size: 26px; font-weight: bold; margin-top: 8px">BIÊN LAI THU TIỀN</p>
+        <p style="text-align: center; margin-top: -20px">Số:______/TSMB</p>
 
-        <div style="padding: 30px; font-style: italic">
+        <div style="padding: 10px; font-style: italic">
             <div style="clear: both">
-                <p style="float: left">Người nộp: {{ profile.name }}</p>
-                <p style="float: right; margin-right: 500px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
+                <p style="float: left">Họ và Tê: {{ profile.name }}</p>
+                <p style="float: right; margin-right: 150px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
             </div>
 
 
@@ -123,11 +123,11 @@
             </div>
         </div>
 
-        <p style="float: right; margin-right: 100px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
+        <p style="float: right; margin-right: 100px; margin-top: -10px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
 
-        <div style="clear: both">
-            <p style="float: left; margin-left: 100px">Người Nộp</p>
-            <p style="float: right; margin-right: 250px">Người Thu</p>
+        <div style="clear: both;">
+            <p style="float: left; margin-left: 100px; margin-top: -10px">Bên Nộp</p>
+            <p style="float: right; margin-right: 250px; margin-top: -10px">Bên Thu</p>
         </div>
     </div>
 </div>

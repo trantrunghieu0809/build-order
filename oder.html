@@ -6,51 +6,66 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Oder</title>
 </head>
-<body>
-    <div class="content-order">
-        <div class="oder">
-            <p style="font-size: 26px; font-weight: bold">ĐẠI HỌC CÔNG NGHỆ VÀ QUẢN LÝ HỮU NGHỊ HÀ NỘI</p>
-            <p style="margin-top: -10px; font-size: 20px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
-            <p style="text-align: center; font-size: 70px; font-weight: bold; margin-top: 50px">BIÊN LAI THU TIỀN</p>
-            <p style="text-align: center">Số:______/TSMB</p>
+<body style="width: 21cm; height: 29.2cm">
+<div id="print" style="clear: both; width: 21cm; height: 29.2cm; border: 1px solid #333;">
+    <!--<div id="print" style="clear: both; width: 1654px; height: 2339px; display: none">-->
+    <div style="color:#333; font-size: 18px; padding: 15px; width: 21cm; height: 14.5cm; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center;">
+        <p style="font-size: 14px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
+        <p style="margin-top: -10px; font-size: 12px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
+        <p style="text-align: center; font-size: 26px; font-weight: bold; margin-top: 8px">BIÊN LAI THU TIỀN</p>
+        <p style="text-align: center">Số:______/TSMB</p>
 
-            <div class="detail">
-                <p>Người nộp: Trần Trung Hiếu</p>
-                <p>Địa chỉ: 29A - ngõ 26/394 đường Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-                <p>Lý do thu: Học phí kỳ I</p>
-                <p>Số tiền thu: 3.000.000 VNĐ</p>
-                <p>Số tiền bằng chữ: ba triệu đồng chẵn</p>
+        <div style="padding: 10px; font-style: italic">
+            <div style="clear: both">
+                <p style="float: left">Người nộp: {{ profile.name }}</p>
+                <p style="float: right; margin-right: 100px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
             </div>
 
-            <p style="float: right; margin-right: 100px">Ngày 12 Tháng 11 Năm 2018</p>
 
             <div style="clear: both">
-                <p style="float: left; margin-left: 100px">Người Nộp</p>
-                <p style="float: right; margin-right: 250px">Người Thu</p>
+                <p>Địa chỉ: {{ profile.address }}</p>
+                <p>Lý do thu: {{ profile.reason }}</p>
+                <p>Số tiền thu: {{ profile.fee | number }} VNĐ</p>
+                <p>Số tiền bằng chữ: {{ getPriceByWrite(profile.fee) }}</p>
             </div>
         </div>
-        <p style="border: solid 1px"></p>
-        <div class="oder">
-            <p style="font-size: 26px; font-weight: bold">ĐẠI HỌC CÔNG NGHỆ VÀ QUẢN LÝ HỮU NGHỊ HÀ NỘI</p>
-            <p style="margin-top: -10px; font-size: 20px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
-            <p style="text-align: center; font-size: 70px; font-weight: bold; margin-top: 50px">BIÊN LAI THU TIỀN</p>
-            <p style="text-align: center">Số:______/TSMB</p>
 
-            <div class="detail">
-                <p>Người nộp: Trần Trung Hiếu</p>
-                <p>Địa chỉ: 29A - ngõ 26/394 đường Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-                <p>Lý do thu: Học phí kỳ I</p>
-                <p>Số tiền thu: 3.000.000 VNĐ</p>
-                <p>Số tiền bằng chữ: ba triệu đồng chẵn</p>
-            </div>
+        <p style="float: right; margin-right: 100px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
 
-            <p style="float: right; margin-right: 100px">Ngày 12 Tháng 11 Năm 2018</p>
-
-            <div style="clear: both">
-                <p style="float: left; margin-left: 100px">Người Nộp</p>
-                <p style="float: right; margin-right: 250px">Người Thu</p>
-            </div>
+        <div style="clear: both">
+            <p style="float: left; margin-left: 100px">Người Nộp</p>
+            <p style="float: right; margin-right: 250px">Người Thu</p>
         </div>
     </div>
+    <p style="color:#333; border: solid 1px"></p>
+    <div style="color:#333; font-size: 14px; padding: 15px; width: 21cm; height: 14.5cm; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center;">
+        <p style="font-size: 12px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
+        <p style="margin-top: -10px; font-size: 8px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
+        <p style="text-align: center; font-size: 26px; font-weight: bold; margin-top: 10px">BIÊN LAI THU TIỀN</p>
+        <p style="text-align: center">Số:______/TSMB</p>
+
+        <div style="padding: 10px; font-style: italic">
+            <div style="clear: both">
+                <p style="float: left">Người nộp: {{ profile.name }}</p>
+                <p style="float: right; margin-right: 100px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
+            </div>
+
+
+            <div style="clear: both">
+                <p>Địa chỉ: {{ profile.address }}</p>
+                <p>Lý do thu: {{ profile.reason }}</p>
+                <p>Số tiền thu: {{ profile.fee | number }} VNĐ</p>
+                <p>Số tiền bằng chữ: {{ getPriceByWrite(profile.fee) }}</p>
+            </div>
+        </div>
+
+        <p style="float: right; margin-right: 100px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
+
+        <div style="clear: both">
+            <p style="float: left; margin-left: 100px">Người Nộp</p>
+            <p style="float: right; margin-right: 250px">Người Thu</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
