@@ -17,13 +17,15 @@ app.controller('controller', function($scope) {
         return input;
     };
 
+    $scope.date = new Date();
+
     $scope.profile = {
         school: null,
         address: null,
         name: null,
         birthday: {
-            day: 1,
-            month: 1,
+            day: '01',
+            month: '01',
             year: 1995
         },
         fee: null,
@@ -34,7 +36,15 @@ app.controller('controller', function($scope) {
         var innerContents = document.getElementById(printSectionId).innerHTML;
         var popupWinindow = window.open('', '_blank', 'width=1654,height=2339,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
-        popupWinindow.document.write('<html><head></head><body onload="window.print()">' + innerContents + '</html>');
+        popupWinindow.document.write('<html><head><link rel="stylesheet" href="css/bootstrap.min.css"></head><body onload="window.print()">' + innerContents + '</html>');
         popupWinindow.document.close();
+    };
+
+    $scope.getPriceByWrite = function(fee) {
+        return to_vietnamese(fee) + ' đồng';
+    };
+
+    $scope.formDisabled = function() {
+        return !!$scope.profile.school && !!$scope.profile.name && !!$scope.profile.address && !!$scope.profile.fee && !!$scope.profile.reason
     }
 });

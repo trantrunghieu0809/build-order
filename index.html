@@ -5,17 +5,18 @@
     <title>Build Order</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" href="css/style.css">-->
 
     <script src="javascipt/angular.min.js"></script>
     <script src="javascipt/controller.js"></script>
+    <script src="javascipt/format-price.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="controller">
 <div class="col-lg-6" style="clear: both">
-    <form>
+    <form name="myForm">
         <div class="form-group col-lg-12">
             <label>Trường</label>
-            <select ng-model="profile.school" class="form-control">
+            <select ng-model="profile.school" name="school" class="form-control">
                 <option selected="selected" value="">-- Chọn Trường --</option>
                 <option ng-repeat="school in schools" value="{{ school }}">{{ school }}</option>
             </select>
@@ -24,73 +25,76 @@
         <div>
             <div class="form-group col-lg-6">
                 <label>Tên Sinh Viên</label>
-                <input ng-model="profile.name" type="text" class="form-control" placeholder="Tên Sinh Viên">
+                <input ng-model="profile.name" name="name" type="text" class="form-control" placeholder="Tên Sinh Viên">
             </div>
 
             <div class="form-group col-lg-2">
                 <label>Ngày Sinh</label>
-                <select ng-model="profile.birthday.day" class="form-control">
-                    <option ng-repeat="n in range(1, 31)" ng-value="n">{{ n < 10 ? '0' + n : n }}</option>
+                <select ng-model="profile.birthday.day" name="birthdayDay" class="form-control">
+                    <option ng-repeat="n in range(1, 31)" ng-value="n < 10 ? '0' + n : n">{{ n < 10 ? '0' + n : n }}</option>
                 </select>
             </div>
 
             <div class="form-group col-lg-2">
                 <label>Tháng</label>
-                <select ng-model="profile.birthday.month" class="form-control">
-                    <option ng-repeat="n in range(1, 12)" ng-value="n">{{ n < 10 ? '0' + n : n }}</option>
+                <select ng-model="profile.birthday.month" name="birthdayMonth" class="form-control">
+                    <option ng-repeat="n in range(1, 12)" ng-value="n < 10 ? '0' + n : n">{{ n < 10 ? '0' + n : n }}</option>
                 </select>
             </div>
 
             <div class="form-group col-lg-2">
                 <label>Năm</label>
-                <select ng-model="profile.birthday.year" class="form-control">
+                <select name="birthdayYear" ng-model="profile.birthday.year" class="form-control">
                     <option ng-repeat="n in range(1960, 2000)" ng-value="n">{{ n }}</option>
                 </select>
             </div>
 
             <div class="form-group col-lg-12">
                 <label>Địa Chỉ</label>
-                <input ng-model="profile.address" type="text" class="form-control" placeholder="Địa chỉ">
+                <input name="address" ng-model="profile.address" type="text" class="form-control" placeholder="Địa chỉ">
             </div>
 
             <div class="form-group col-lg-12">
                 <label>Lý Do</label>
-                <input ng-model="profile.reason" type="text" class="form-control" placeholder="Lý Do">
+                <input name="reason" ng-model="profile.reason" type="text" class="form-control" placeholder="Lý Do">
             </div>
 
             <div class="form-group col-lg-12">
                 <label>Số Tiền</label>
-                <input ng-model="profile.fee" type="number" class="form-control" placeholder="Số Tiền">
+                <input name="fee" ng-model="profile.fee" type="number" class="form-control" placeholder="Số Tiền">
             </div>
         </div>
 
         <div class="col-lg-12">
-            <button type="button" ng-click="printToCart('print')" class="btn btn-default">Print</button>
+            <button ng-disabled="!formDisabled()" type="button" ng-click="printToCart('print')" class="btn btn-default">Print</button>
         </div>
     </form>
 </div>
 
-
-
-
-
-<div id="print" style="clear: both; width: 1654px; height: 2339px">
-<!--<div id="print" style="display: none">-->
+<!--<div id="print" style="clear: both; width: 1654px; height: 2339px">-->
+<div id="print" style="clear: both; width: 1654px; height: 2339px; display: none">
     <div style="color:#333; font-size: 40px; padding: 15px;width: 1654px;height: 1165px; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center;">
-        <p style="font-size: 26px; font-weight: bold">ĐẠI HỌC CÔNG NGHỆ VÀ QUẢN LÝ HỮU NGHỊ HÀ NỘI</p>
+        <p style="font-size: 26px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
         <p style="margin-top: -10px; font-size: 20px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
         <p style="text-align: center; font-size: 70px; font-weight: bold; margin-top: 50px">BIÊN LAI THU TIỀN</p>
         <p style="text-align: center">Số:______/TSMB</p>
 
         <div style="padding: 30px; font-style: italic">
-            <p>Người nộp: Trần Trung Hiếu</p>
-            <p>Địa chỉ: 29A - ngõ 26/394 đường Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-            <p>Lý do thu: Học phí kỳ I</p>
-            <p>Số tiền thu: 3.000.000 VNĐ</p>
-            <p>Số tiền bằng chữ: ba triệu đồng chẵn</p>
+            <div style="clear: both">
+                <p style="float: left">Người nộp: {{ profile.name }}</p>
+                <p style="float: right; margin-right: 500px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
+            </div>
+
+
+            <div style="clear: both">
+                <p>Địa chỉ: {{ profile.address }}</p>
+                <p>Lý do thu: {{ profile.reason }}</p>
+                <p>Số tiền thu: {{ profile.fee | number }} VNĐ</p>
+                <p>Số tiền bằng chữ: {{ getPriceByWrite(profile.fee) }}</p>
+            </div>
         </div>
 
-        <p style="float: right; margin-right: 100px">Ngày 12 Tháng 11 Năm 2018</p>
+        <p style="float: right; margin-right: 100px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
 
         <div style="clear: both">
             <p style="float: left; margin-left: 100px">Người Nộp</p>
@@ -99,20 +103,27 @@
     </div>
     <p style="color:#333; border: solid 1px"></p>
     <div style="color:#333; font-size: 40px; padding: 15px;width: 1654px;height: 1165px; background: url('imges/logo-tuyển-sinh-miền-bắc.png') no-repeat center;">
-        <p style="font-size: 26px; font-weight: bold">ĐẠI HỌC CÔNG NGHỆ VÀ QUẢN LÝ HỮU NGHỊ HÀ NỘI</p>
+        <p style="font-size: 26px; font-weight: bold; text-transform:uppercase">{{ profile.school }}</p>
         <p style="margin-top: -10px; font-size: 20px; font-style: italic">Số 36, Mạc Thái Tổ, Cầu Giấy, Hà Nội</p>
         <p style="text-align: center; font-size: 70px; font-weight: bold; margin-top: 50px">BIÊN LAI THU TIỀN</p>
         <p style="text-align: center">Số:______/TSMB</p>
 
-        <div style="padding: 30px; font-style: italic; ">
-            <p>Người nộp: Trần Trung Hiếu</p>
-            <p>Địa chỉ: 29A - ngõ 26/394 đường Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-            <p>Lý do thu: Học phí kỳ I</p>
-            <p>Số tiền thu: 3.000.000 VNĐ</p>
-            <p>Số tiền bằng chữ: ba triệu đồng chẵn</p>
+        <div style="padding: 30px; font-style: italic">
+            <div style="clear: both">
+                <p style="float: left">Người nộp: {{ profile.name }}</p>
+                <p style="float: right; margin-right: 500px">Ngày sinh: {{ profile.birthday.day + '/' + profile.birthday.month + '/' + profile.birthday.year }}</p>
+            </div>
+
+
+            <div style="clear: both">
+                <p>Địa chỉ: {{ profile.address }}</p>
+                <p>Lý do thu: {{ profile.reason }}</p>
+                <p>Số tiền thu: {{ profile.fee | number }} VNĐ</p>
+                <p>Số tiền bằng chữ: {{ getPriceByWrite(profile.fee) }}</p>
+            </div>
         </div>
 
-        <p style="float: right; margin-right: 100px">Ngày 12 Tháng 11 Năm 2018</p>
+        <p style="float: right; margin-right: 100px">Ngày {{ date | date:'dd' }} Tháng {{ date | date:'MM' }} Năm {{ date | date:'yyyy' }}</p>
 
         <div style="clear: both">
             <p style="float: left; margin-left: 100px">Người Nộp</p>
