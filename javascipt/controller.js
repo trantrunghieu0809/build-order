@@ -34,12 +34,10 @@ app.controller('controller', function($scope) {
 
     $scope.printToCart = function(printSectionId) {
         var innerContents = document.getElementById(printSectionId).innerHTML;
-        var popupWinindow = window.open('', '_blank', 'width=1654,height=2339,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        var popupWinindow = window.open();
         popupWinindow.document.open();
-        popupWinindow.document.write('<html><head><link rel="stylesheet" media="screen" href="css/bootstrap.min.css"><link rel="stylesheet" media="screen" href="css/style.css"></head><body onload="window.print()">' + innerContents + '</html>');
+        popupWinindow.document.write('<html><head><title>'+ $scope.profile.name +'</title><link rel="stylesheet" media="screen" href="css/bootstrap.min.css"><link rel="stylesheet" media="screen" href="css/style.css"></head><body onload="window.print()">' + innerContents + '</html>');
         popupWinindow.document.close();
-
-
     };
 
     $scope.getPriceByWrite = function(fee) {
