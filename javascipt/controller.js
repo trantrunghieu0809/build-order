@@ -5,7 +5,8 @@ app.controller('controller', function($scope) {
         'Đại Học Công nghệ và Quản lý Hà Nội',
         'Trung Cấp Tổng Hợp Hà Nội',
         'Đại Học Thành Đông',
-        'Đại Học Kinh doanh và Công nghệ Hà Nội'
+        'Đại Học Kinh doanh và Công nghệ Hà Nội',
+        'Trung Câp Sư Phạm Thái Nguyên'
     ];
 
     $scope.range = function(min, max, step) {
